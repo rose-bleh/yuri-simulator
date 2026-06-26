@@ -3,11 +3,13 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define v = Character("Vivian", color="#84dd84")
-define n = Character("Natsuki", color="#e7a5e9")
-define s = Character("Stelle", color="#a1bcee")
-define z = Character("Ms. Zoru", color="#e07979")
+define v = Character("Vivian", color="#77cc77")
+define n = Character("Natsuki", color="#c589c7")
+define s = Character("Stelle", color="#95afdf")
+define z = Character("Ms. Zoru", color="#cf6e6e")
 
+default natsuki_points = 0
+default stelle_points = 0
 default natsuki_friend = 0
 default natsuki_love = 0
 default stelle_friend = 0
@@ -45,16 +47,14 @@ label start:
         "Who will you choose?"
 
         "Stay with Natsuki":
-            jump stay_with_natsuki
             $ stayWithNatsuki = True
-            $ natsuki_friend += 1
-            $ natsuki_love += 1
+            $ natsuki_points += 1
+            jump stay_with_natsuki
 
         "Leave with Stelle":
-            jump leave_with_stelle
             $ leaveWithStelle = True
-            $ stelle_friend += 1
-            $ stelle_love += 1
+            $ stelle_points += 1
+            jump leave_with_stelle
 
 label stay_with_natsuki:
 
@@ -92,12 +92,12 @@ label leave_with_stelle:
         "What will you do?"
 
         "Complement Stelle":
-            jump complement_stelle
             $ stelle_love += 1
+            jump complement_stelle
 
         "Say nothing":
-            jump say_nothing
             $ stelle_friend += 1
+            jump say_nothing
 
 label complement_stelle:
 
@@ -105,7 +105,7 @@ label complement_stelle:
 
 label say_nothing:
     
-    e "Never mind. There's no need to ruin this nice moment with her."
+    v "Never mind. There's no need to ruin this nice moment with her."
 
     jump continue_looking_at_the_stars
 
@@ -127,27 +127,25 @@ label go_home:
         "Where will you go?"
 
         "Go to the literature club with Natsuki":
+            $ natsuki_points += 1
             jump literature_club
-            $ natsuki_friend += 1
-            $ natsuki_love += 1
 
         "Go to Stelle's soccer game":
+            $ stelle_points += 1
             jump soccer_game
-            $ stelle_friend += 1
-            $ stelle_love += 1
 
 label literature_club:
 
     menu:
         "What poem should you write?"
 
-        "Write a poem about love":
-            jump love_poem
+        "Write a poem about Natsuki":
             $ natsuki_love += 1
+            jump love_poem
 
         "Write a poem about ice cream":
-            jump ice_cream_poem
             $ natsuki_friend += 1
+            jump ice_cream_poem
 
 label love_poem:
 
@@ -163,7 +161,7 @@ label walk_home_with_natsuki:
 
 label soccer_game:
     
-    v "She looks super surprised"
+    v "She looks super surprised."
 
     s "WOAH!"
     
@@ -190,14 +188,12 @@ label home_2:
         "Who do you work with?"
 
         "Work with Natsuki":
+            $ natsuki_points += 1
             jump work_with_natsuki
-            $ natsuki_friend += 1
-            $ natsuki_love += 1
 
         "Work with Stelle":
+            $ stelle_points += 1
             jump work_with_stelle
-            $ stelle_friend += 1
-            $ stelle_love += 1
 
 label work_with_natsuki:
 
@@ -205,16 +201,17 @@ label work_with_natsuki:
         "What will you do?"
 
         "Complement Natsuki":
-            jump complement_natsuki
             $ natsuki_love += 1
+            jump complement_natsuki
 
         "Be normal":
-            jump be_normal
             $ natsuki_friend += 1
+            jump be_normal
 
 label complement_natsuki:
 
     v "You're so good at writing! I really liked how energetic you were when we were presenting."
+    
     n "U-um, thanks."
 
     jump home_3
@@ -231,9 +228,11 @@ label work_with_stelle:
         "What will you do?"
 
         "Lock in":
+            $ stelle_friend += 1
             jump lock_in
 
         "Listen to Stelle, we can do this later":
+            $ stelle_friend += 1
             jump listen_to_stelle
 
 label lock_in:
@@ -248,14 +247,14 @@ label listen_to_stelle:
         "What will you do?"
 
         "Throw Stelle under the bus":
+            $ throwStelleUnderTheBus = True
             jump throw_stelle_under_the_bus
 
         "Take the blame":
+            $ stelle_love += 1
             jump take_the_blame
 
 label throw_stelle_under_the_bus:
-
-    $ throwStelleUnderTheBus = True
 
     jump home_3
 
@@ -267,8 +266,20 @@ label home_3:
 
     if throwStelleUnderTheBus == True:
         "Wow, that sucked."
-    else:
+    #else:
         
+    if throwStelleUnderTheBus == True:
+        jump stelle_friendship_ending
+    if natsuki_points > stelle_points:
+        if natsuki_love > natsuki_friend:
+            jump natsuki_yuri_ending
+        else:
+            jump natsuki_friendship_ending
+    elif stelle_points > natsuki_points:
+        if stelle_love > stelle_friend:
+            jump stelle_yuri_ending
+        else:
+            jump stelle_friendship_ending
 
 label natsuki_friendship_ending:
 
