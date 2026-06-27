@@ -1,8 +1,3 @@
-# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
 define v = Character("Vivian", color="#60a860")
 define n = Character("Natsuki", color="#a36fa5")
 define s = Character("Stelle", color="#7d93bd")
@@ -23,6 +18,13 @@ default lockIn = False
 default throwStelleUnderTheBus = False
 default takeTheBlame = False
 
+image side v embarrassed1 = Image("hoshi_school_embarrassed1.png", oversample = 2)
+image side v embarrassed2 = Image("hoshi_school_embarrassed2.png", oversample = 2)
+image side v sad = Image("hoshi_school_sad.png", oversample = 2)
+image side v smile = Image("hoshi_school_smile.png", oversample = 2)
+image side v surprised = Image("hoshi_school_surprised.png", oversample = 2)
+image side v upset = Image("hoshi_school_upset.png", oversample = 2)
+
 image n neutral = Image("Eve_Neutral.png", oversample = 2)
 image n smile = Image("Eve_Smile.png", oversample = 2)
 image n shy = Image("Eve_Shy.png", oversample = 2)
@@ -39,34 +41,24 @@ image s embarrassed = Image("Alice_Embarrassed.png", oversample = 2)
 image s doubt = Image("Alice_Doubt.png", oversample = 2)
 image s worried = Image("Alice_Worried.png", oversample = 2)
 
-
-# The game starts here.
+image bg street morning = "Street_Summer_Day.png"
+image bg street evening = "Street_Summer_Evening.png"
+image bg street stars = "Street_Summer_Stars.png"
+image bg classroom day = "Classroom_Day.png"
+image bg backstreet afternoon = "Backstreet_Summer_Afternoon.png"
+image bg school = "Old_School.png"
+#need library
 
 label start:
 
-    #I'm going to use this as reference!
+    scene bg street morning
+    show side v smile
+    #this looks kinda weird 
+    show n angry with moveinleft 
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
-    #scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    #show eileen happy
-
-    # These display lines of dialogue.
-
-    #e "You've created a new Ren'Py game."
-
-    #e "Once you add a story, pictures, and music, you can release it to the world!"
-    
-    show n angry
-    
     n "WAIT FOR ME!"  #(try to get the text to go like "meeeeeeeeeeeeeeeeee")
+
+    with hpunch
     
     "A high pitched voice squeals behind me."
 
@@ -77,12 +69,15 @@ label start:
     v "Stop being a nerd. Ms. Zoru won't be pissed if we're a couple minutes late."
 
     n "Shut up! I don't care! Leave me alone then!"
+    
+    hide n angry 
+    with moveoutright
 
     "Damn, she just sprinted away."
 
-    #add more
+    #add more!
 
-    "The library is loud today. It's probably because of exam season, but still."
+    "The library is loud today. It's probably because of exam season, but still"
 
     n "Are you even paying attention? Ms. Zoru is definitely going to assign a project or test or whatever soon and we have to be prepared."
 
