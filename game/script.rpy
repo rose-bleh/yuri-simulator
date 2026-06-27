@@ -3,10 +3,10 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define v = Character("Vivian", color="#77cc77")
-define n = Character("Natsuki", color="#c589c7")
-define s = Character("Stelle", color="#95afdf")
-define z = Character("Ms. Zoru", color="#cf6e6e")
+define v = Character("Vivian", color="#60a860")
+define n = Character("Natsuki", color="#a36fa5")
+define s = Character("Stelle", color="#7d93bd")
+define z = Character("Ms. Zoru", color="#d16a6a")
 
 default natsuki_points = 0
 default stelle_points = 0
@@ -19,7 +19,25 @@ default leaveWithStelle = False
 default literatureClub = False
 default iceCreamPoem = False
 default soccerGame = False
+default lockIn = False
 default throwStelleUnderTheBus = False
+default takeTheBlame = False
+
+image n neutral = Image("Eve_Neutral.png", oversample = 2)
+image n smile = Image("Eve_Smile.png", oversample = 2)
+image n shy = Image("Eve_Shy.png", oversample = 2)
+image n laugh = Image("Eve_Laugh.png", oversample = 2)
+image n cry = Image("Eve_Cry.png", oversample = 2)
+image n angry = Image("Eve_Angry.png", oversample = 2)
+image n surprise = Image("Eve_Surprise.png", oversample = 2)
+
+image s default = Image("Alice_Default.png", oversample = 2)
+image s happy = Image("Alice_Happy.png", oversample = 2)
+image s teasing = Image("Alice_Teasing.png", oversample = 2)
+image s blush = Image("Alice_Blush.png", oversample = 2)
+image s embarrassed = Image("Alice_Embarrassed.png", oversample = 2)
+image s doubt = Image("Alice_Doubt.png", oversample = 2)
+image s worried = Image("Alice_Worried.png", oversample = 2)
 
 
 # The game starts here.
@@ -45,6 +63,9 @@ label start:
     #e "You've created a new Ren'Py game."
 
     #e "Once you add a story, pictures, and music, you can release it to the world!"
+    
+    show n angry
+    
     n "WAIT FOR ME!"  #(try to get the text to go like "meeeeeeeeeeeeeeeeee")
     
     "A high pitched voice squeals behind me."
@@ -63,7 +84,7 @@ label start:
 
     "The library is loud today. It's probably because of exam season, but still."
 
-    n "Are you even paying attention?? Ms. Zoru is definitely going to assign a project or test or whatever soon and we have to be prepared."
+    n "Are you even paying attention? Ms. Zoru is definitely going to assign a project or test or whatever soon and we have to be prepared."
 
     v "Sorry! But we don't even know what's coming up, why should I be worried now?"
 
@@ -106,7 +127,7 @@ label stay_with_natsuki:
     
     v "I don't feel like going outside right now."
     
-    s "That's lame. Whatever, see you around I guess"
+    s "That's lame. Whatever, see you around I guess."
     
     "She leaves in a rush. Is she embarrassed?"
     
@@ -161,7 +182,7 @@ label leave_with_stelle:
     
     "Wait, did I seriously waste my energy to go play on the swings with her?"
     
-    s "So...do you wanna swing?"
+    s "So...do you wanna play?"
     
     "I regret this so much."
     
@@ -248,7 +269,7 @@ label go_home:
     if stayWithNatsuki == True:
         "Natsuki pouts and sprints faster. She yells at me not to be late, but like always, I pretend like I don't hear her."
     elif leaveWithStelle == True:
-        "She's acting a little more distant. Why is she still hung up over yesterday?"
+        "She's acting a little more distant. Is she still hung up over yesterday?"
 
     "Later..."
     
@@ -299,6 +320,7 @@ label literature_club:
             jump love_poem
 
         "Write a poem about ice cream":
+            $ iceCreamPoem == True
             $ natsuki_friend += 1
             jump ice_cream_poem
 
@@ -362,12 +384,14 @@ label walk_home_with_natsuki:
 
     "Maybe writing poems isn't so bad."
 
-    if 
-    v "I'm so glad it's over. I'm hungry for ice cream."
-    n "You definitely baited me with that poem."
-    n "Let's just eat."
-    v "Yay!!"
-
+    if iceCreamPoem == True:
+        v "I'm so glad it's over. I'm hungry for ice cream."
+        
+        n "You definitely baited me with that poem."
+        
+        n "Let's just eat."
+        
+        v "Yay!!"
 
     jump home_2
 
@@ -403,9 +427,9 @@ label soccer_game:
     s "Vivian, I'm exhausted. If you're not going to say anything nice, then please, shut up."
     
     if stayWithNatsuki == True:
-        v "Be patient, remember?" 
-    elif leaveWithStelle == True:
         v "Ok, I'll respect the winning team"
+    elif leaveWithStelle == True:
+        v "Be patient, remember?" 
 
     v "You were pretty good out there."
     
@@ -430,14 +454,49 @@ label soccer_game:
     jump home_2
 
 label home_2:
-    
-    #add z
 
     #maybe add more flavor text
     if leaveWithStelle == True & soccerGame == True:
         "I never knew Stelle was so fun! But knowing her, I don't know if I would trust my grade with her."
-    elif stayWithNatsuki == True & literature_club == True:
+    elif stayWithNatsuki == True & literatureClub == True:
         "Natsuki is such a reliable friend, but there's no harm in trying out new teammates. Should I play it safe with our project?"
+
+    "Walking to school.."
+
+    if leaveWithStelle == True & soccerGame == True:
+        "I don't see Natsuki out here. She seems to be leaving earlier and earlier. Hopefully I can catch her at school."
+    else:
+        "Natsuki is waiting a couple blocks away from me, darting her eyes around."
+
+    "She sees me and waves her hand frantically."
+
+    n "Why am I the one waiting? This sucked."
+    
+    n "You should've ran the second you saw me."
+    
+    v "I don't think I want to waste all my energy before lunch."
+    
+    n "I'm not buying you anymore food."
+    
+    v "You mean 'our' food, but I'll respect it."
+    
+    v "Just don't complain when I show up late again."
+    
+    n "You're so annoying!"
+
+    #add z
+
+    "Afterschool.."
+    
+    "This project is going to suck."
+    
+    "When I arrive to the library, I see Natsuki struggling to get a book."
+    
+    "It's way too tall for her to reach, but she's too embarrassed to get a stool."
+    
+    "Stelle is handling the help desk."
+    
+    " 'Handling'. I can see her phone screen brightening up her face. "
 
     menu:
         "Who do you work with?"
@@ -452,6 +511,72 @@ label home_2:
 
 label work_with_natsuki:
 
+    "What am I thinking? Obviously Natsuki would be a better partner."
+    
+    "I grab the stool and plop it next to her feet."
+    
+    n "So much for discrete!"
+    
+    n "Can you just grab that book for me? I don't want to be caught using that creaky stool."
+    
+    v "You're so fussy!"
+    
+    "I grab it anyways and look at the cover."
+    
+    v "Is this what our project is going to be? A presentation about nature?"
+    
+    n "Yep! Nature has a lot of interesting topics we can approach so we can add a lot of research about-"
+    
+    v "I'm not writing all that!"
+    
+    n "You're not writing anything! Wait-"
+    
+    n "Did you come here so we could work on the project together?"
+    
+    v "Yeah, you're the best candidate."
+
+    if leaveWithStelle == True & soccerGame == True:
+        n "Was the other candidate Stelle? Why would you even consider her as an option?"
+        
+        n "We can work together but you have to actually work on the project, ok?" #(italics)
+    else:
+        n "What other option would there be?" #(beaming)
+        
+        n "Let's make an awesome project!"
+
+    v "Ok! But you're going to be the one that has to write all the in-depth research. It sounds boring."
+    
+    n "Ugh, fine."
+
+    "One week later.."
+
+    n "- and that's why the preservation of lush flora is vital to ensuring that our land can stay verdantly frondescence!"
+    
+    z "Well done girls! This was a great presentation about the importance of environmentalism, especially in your generation."
+    
+    n "Thanks, our research had a lot to do with-"
+    
+    "I have no idea what they're talking about."
+    
+    v "Thanks Ms. Zoru! We'll let the next group present now."
+    
+    "I shoot a look to Natsuki."
+    
+    "She pouts but agrees and we go back to our seats."
+    
+    "Stelle's group presents next!"
+    
+    "..."
+    
+    "It's really bad. There's no research done at all about their topic. I can see Ms. Zoru's face frown the entire time. Thank goodness I didn't choose her."
+
+    "After class.."
+    
+    "I have nothing to do, so I'll just hang out with Natsuki."
+    
+    "Our project was actually pretty cool, even if I didn't really understand what she was saying."
+
+
     menu:
         "What will you do?"
 
@@ -459,7 +584,7 @@ label work_with_natsuki:
             $ natsuki_love += 1
             jump complement_natsuki
 
-        "Be normal":
+        "Act normal":
             $ natsuki_friend += 1
             jump be_normal
 
@@ -467,7 +592,29 @@ label complement_natsuki:
 
     v "You're so good at writing! I really liked how energetic you were when we were presenting."
     
-    n "U-um, thanks."
+    n "Thanks Vivian." #(happyy/blushing??)
+    
+    n "You did great too! The way you formatted the information made it easier to follow."
+    
+    v "It wasn't that hard. You just put everything in giant blocks of text. I couldn't see anything you put."
+    
+    n "Hey! It had a lot of important information and was needed so that-"
+    
+    v "Ack! Whatever then!"
+    
+    v "Anyways, after all this, we should celebrate!"
+    
+    n "That's not a bad idea."
+    
+    n "Wanna come to my house? We can bake cupcakes."
+    
+    n "Only if you want too! No pressure, I can bake them by myself."
+    
+    v "(laughs)"
+    
+    v "I like baking, c'mon, I'll actually run this time!"
+    
+    n "Wait up! You don't even have the key to my house!"
 
     jump home_3
 
@@ -475,15 +622,75 @@ label be_normal:
 
     v "We did a great job presenting! Ms. Zoru has to give us an A on this."
 
+    n "Of course she's going to give us an A. Did you not pay attention to her interest after we presented?"
+    
+    n "She asked us so many questions!"
+    
+    v "She asked us one."
+    
+    v "And you were the one that tried to keep talking for the rest of the class!"
+    
+    n "I was answering her question!"
+
     jump home_3
 
 label work_with_stelle:
+
+    "I go up to Stelle. I don't think she notices I'm in her face."
+    
+    v "Hello?"
+    
+    s "Ahh!"
+    
+    "She drops her phone in surprise."
+    
+    s "Hey! If my screen cracks because of you, you owe me bad." #(italics, mad?)
+    
+    v "Aren't you supposed to be attentive on the job?"
+    
+    s "I am paying attention. My high score was on the line!"
+    
+    "I might be dead for this project. Oh well."
+    
+    v "I don't care about that!"
+    
+    v "I came here to ask you about something."
+
+    "She looks at me suspiciously and raises her eyebrows."
+    
+    s "I think you know how to use the library computers."
+    
+    v "What? No I'm-"
+    
+    s "The dewey decimal system chart is right here. Find your genre and leave me alone."
+    
+    v "Can you quit it! I'm here to ask if you can be my partner for the project."
+
+    if stayWithNatsuki == True & literatureClub == True:
+        s "..."
+        
+        s "Why?"
+        
+        v "Why..not?"
+        
+        s "Wouldn't you wanna to partner up with Natsuki more?"
+        
+        v "I want to partner up with you. You seem more fun!" #(italics)
+        
+        s "Um, cool!"
+    else:
+        s "Oh sure!"
+
+    s "But I'm not really in the mood to do it right now."
+    
+    s "Plus, isn't it due next week? I think we have time to hang around first."
 
     menu:
         "What will you do?"
 
         "Lock in":
-            $ stelle_friend += 1
+            $ lockIn = True
+            $ stelle_love += 1
             jump lock_in
 
         "Listen to Stelle, we can do this later":
@@ -492,11 +699,115 @@ label work_with_stelle:
 
 label lock_in:
 
+    v "Wouldn't you like it if we finished the project now rather than do it all later?"
+    
+    v "You aren't even doing anything right now! Lets just start today."
+    
+    s "Fine."
+    
+    "Stelle jumps over the help desk and hops to my side."
+    
+    v "???"
+    
+    v "Couldn't you use the swinging door instead?"
+    
+    s "I lost the key to it so it won't swing anymore." #:)
+    
+    "I'm doomed."
+
+    "One week later.."
+    
+    s "-and that's why cats are better than dogs!"
+    
+    z "What an interesting project! I like the niche research you found."
+    
+    s "Thanks Ms. Zoru!"
+    
+    "We head back to our seats."
+    
+    "Natsuki's group presents next!"
+    
+    "..."
+    
+    "It's really boring. I think I fell asleep at the first slide. There's absolutely no pictures and it's just walls text on a white screen."
+    
+    "Ms. Zoru is the only one awake. At least they're going to get a good grade."
+
+    
+    "After class..."
+    
+    v "That was pretty good! I'm surprised you didn't mess it up."
+    
+    s "Me? You're the one who kept adding things after I thought we were done."
+    
+    s "But I agree. I kinda need her to raise my grade."
+    
+    v "She totally will. She complemented us and everything!"
+    
+    "Stelle smiles."
+    
+    s "Thanks for keeping me on track. If I get a B, I'll treat you to some fries."
+    
+    s "Wanna come with me? I got soccer practice now."
+
+    v "Sure!"
+
     jump home_3
 
 label listen_to_stelle:
 
-    "Ms. Zoru, I have something to tell you."
+    v "You're right, we have a lot of time."
+    
+    v "What are you playing?"
+    
+    s "Oh it's-"
+    
+    "We spend the rest of her shift playing video games."
+    
+    "And the day after that. And maybe a bit more."
+
+    "One week later"
+    
+    "We end up doing our slides the day before it's due."
+    
+    "I'm so sleep derived."
+    
+    "I quickly review the presentation before we're up."
+    
+    "WAIT."
+    
+    "Did Stelle just copy and paste her slides?"
+    
+    "I look through the rest and they look horrible."
+    
+    "My grade is so screwed."
+
+    
+    v "Stelle! What the hell is this?"
+    
+    s "It's my slides."
+    
+    v "Did you literally just copy and paste everything? You don't write this professionally."
+    
+    s "Hey, this is a last minute project. There's no way I could fill up all those slides in time."
+    
+    v "Seriously? Ms. Zoru can tell this is fake. Everyone can tell this is fake."
+    
+    s "You're the one that wanted to partner with me!"
+    
+    "Before we can keep arguing, it's our turn to present."
+    
+    "Ms. Zoru's face is not looking good."
+    
+    z "Girls, I'd like for you to see me after class."
+    
+    "Ack!"
+
+    "After class..."
+    
+    z "Your project is clearly not written by you."
+    
+    z "What do you have to say about that?"
 
     menu:
         "What will you do?"
@@ -505,15 +816,80 @@ label listen_to_stelle:
             $ throwStelleUnderTheBus = True
             jump throw_stelle_under_the_bus
 
-        "Take the blame":
-            $ stelle_love += 1
+        "Share the blame":
+            $takeTheBlame = True
+            $ stelle_friend += 1
             jump take_the_blame
 
 label throw_stelle_under_the_bus:
 
+    "Ms. Zoru, I have something to tell you."
+
+    v "Stelle's slides were just copy and pasted from our sources. Mine are written by me."
+    
+    s "Hey!"
+    
+    v "It's true though. You were too lazy to do them, weren't you?"
+    
+    s "B-but it's not like I should take all the blame!"
+    
+    z "That's enough. I've decided to give Stelle a zero on this assignment since you clearly stated that it was her doing."
+    
+    s "You can't! I'm going to have to retake this class!"
+    
+    z "That's entirely on you. There's always summer school."
+    
+    "Stelle looks heartbroken."
+
+    "Later.."
+    
+    s "What the hell Vivian?"
+    
+    s "You were the one that asked to work with me. You procrastinated too."
+    
+    s "I don't understand why you needed to rat me out like that."
+    
+    v "I didn't expect you to do that! I actually worked on my part."
+    
+    s "That's not the- ugh, what's the point."
+    
+    s "Whatever Vivian, thanks for making me retake her stupid class."
+    
+    "She stomps away."
+    
+    "That's not my fault, but whatever."
+
     jump home_3
 
 label take_the_blame:
+
+    v "I'm sorry Ms. Zoru. I was the one that suggested it since we waited last minute."
+    
+    z "I'm pretty disappointed in the both of you."
+    
+    z "Since you were honest about it, I'll let you redo the project with 10% off."
+    
+    s "Seriously?"
+    
+    z "Or not. You both could get a zero."
+    
+    s "NO! I mean, thanks, we'll redo the presentation."
+
+    "Later.."
+    
+    s "Vivian, thank you so much."
+    
+    s "You didn't need to put yourself down too."
+    
+    v "It was kinda my fault too. We both procrastinated a lot on this, but you shouldn't have used copied in such an obvious way."
+    
+    s "Yea, I'm sorry about that."
+    
+    s "We should probably get started on the redo, right?"
+    
+    v "Definitely! Let's go to library before it closes."
+    
+    s "Okay!"
 
     jump home_3
 
@@ -521,7 +897,12 @@ label home_3:
 
     if throwStelleUnderTheBus == True:
         "Wow, that sucked."
-    #else:
+    elif lockIn == True:
+        "That was a lot better than I thought!"
+    elif takeTheBlame == True:
+        "Hopefully we can make it up to Ms. Zoru."
+    else:
+        "Natsuki is intense, but our project ended up great!"
         
     if throwStelleUnderTheBus == True:
         jump natsuki_friendship_ending
