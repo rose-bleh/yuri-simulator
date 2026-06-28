@@ -1,6 +1,6 @@
 define v = Character("Vivian", color="#60a860")
 define n = Character("Natsuki", color="#a36fa5")
-define s = Character("Stelle", color="#7d93bd")
+define s = Character("Stelle", color="#5981ca")
 define z = Character("Ms. Zoru", color="#d16a6a")
 
 default natsuki_points = 0
@@ -209,6 +209,8 @@ label leave_with_stelle:
     "Stelle furrows her eyebrows for a second, but then just as quickly relaxes and smiles."
     
     s "Okay."
+
+    show s blush
     
     s "Hurry, let's run before the sun sets! I don't have a flashlight and my phone's about to die."
     
@@ -216,17 +218,23 @@ label leave_with_stelle:
     
     "Stelle just laughs and runs faster. I don't want to be behind, so I rush to keep up."
 
+    hide s blush with moveoutright
     with dissolve
-    
+    show s default
+
     "I follow her to an empty playground."
     
     "Wait, did I seriously waste my energy to go play on the swings with her?"
+
+    show s teasing
     
     s "So...do you wanna play?"
     
     "I regret this so much."
     
     v "If I fail my class, I'm going to blame you library assistant."
+
+    show s doubt
     
     s "Don't be so pissy. Of course this isn't the reason I got you to chase me here. Just be patient."
     
@@ -234,17 +242,29 @@ label leave_with_stelle:
    
     "She pretends to ignore me and heads to the swings. I just follow her."
 
+    hide s doubt with moveoutright
+
     "Soon, it's getting dark out."
+
+    show s happy
     
     v "Ugh, I'm getting tired."
+
+    show s doubt
     
     s "Didn't I tell you to wait? C'mon, look up."
     
-    "Wow, the sky is so clear here."
+    "Wow, the sky is so clear here!"
     
     v "This is awesome, how did you know about this?"
+
+    show s happy
     
-    s "I skip here all the time. Once, I fell asleep and woke up to this. Pretty cool right?"
+    s "I skip here all the time."
+
+    show s blush
+    
+    s "Once, I fell asleep and woke up to this. Pretty cool right?"
     
     "I've never seen her in this light before. Were her eyes always this pretty?"
 
@@ -299,11 +319,15 @@ label continue_looking_at_the_stars:
     
     s "No problem, but remember, you owe me next time! See you tomorrow, Vivian."
 
+    hide s blush
+
     jump go_home
 
 label go_home:
 
     "This was a pretty fun day. Hopefully tomorrow will be the same."
+
+    scene bg street morning with dissolve
 
     "It's the next day."
 
@@ -314,11 +338,17 @@ label go_home:
 
     "I step out of the house and see someone familiar in the distance."
 
+    show n neutral at right
+
     v "Hey Natsuki! Don't be in such a rush again!"
 
     if stayWithNatsuki == True:
+        show n angry
         "Natsuki pouts and sprints faster. She yells at me not to be late, but like always, I pretend like I don't hear her."
+        hide n angry with moveoutright
     elif leaveWithStelle == True:
+        show n shy
+        hide n shy with moveoutright
         "She's acting a little more distant. Is she still hung up over yesterday?"
 
     "Later..."
@@ -344,22 +374,34 @@ label literature_club:
 
     "I shouldn't ditch Natsuki. She's probably waiting for me."
 
+    show n shy
+
     "Natsuki is nervously outside the club door, looking around. I was right."
+
+    show n surprise
     
     n "Hey Vivian! Why are you so late? Stop doing that or it's going to become a habit."
     
     v "I needed to talk with my teacher. Anyways, what are we doing today?"
     
+    show n laugh
+
     n "The club president was just saying that she thinks that we should be working on our writing skills more. We need to diversify by writing poems."
     
     v "What? That sounds boring!"
+
+    show n angry with hpunch
     
     n "No it isn't! Poems are a unique way to present your ideas to the world."
     
     v "I don't have any ideas. I wanted to read manga with you again."
+
+    show n smile
     
     n "Just make a poem first and we can!"
     
+    hide n smile with moveoutright
+
     "Natsuki goes to get me some paper."
 
     menu:
@@ -378,13 +420,17 @@ label love_poem:
 
     "I guess I'll just write a poem about Natsuki."
 
+    show n neutral with moveinleft
+
     "Natsuki comes back with the supplies and I get to work."
 
     v "Ok, I'm done."
 
     "I present my poem to Natsuki, talking about her sweet personality and hardworking energy."
     
-    n "H-hey! Why'd you write a poem about me."
+    show n shy
+    
+    n "H-hey! Why'd you write a poem about me!"
     
     v "It was the easiest to write. I mean, I know so much about you."
     
@@ -393,6 +439,8 @@ label love_poem:
     v "Well, it made for a better poem right?"
     
     n "I-it's not like I like it or anything!"
+
+    show n angry
     
     n "I'm just happy you can finally read manga with me. Do you know how long you took?"
     
@@ -404,23 +452,33 @@ label ice_cream_poem:
 
     "I'm pretty hungry. I'm just going to write a poem about ice cream."
 
+    show n default with moveinleft
+
     "Natsuki comes back with the supplies and I get to work."
     
     v "Ok, I'm done."
 
     "I present my poem to Natsuki, talking about the different flavors of ice cream and whether cones or bowls are better."
     
+    show n angry
+    
     n "What the heck? What kinda poem was that?"
     
     v "Were you even paying attention? That's a poem about my love for ice cream."
     
     n "There's no way this helped your writing skills at all."
+
+    show n neutral
     
     n "Now I'm craving ice cream too..."
     
     v "See? That's how moving my poem was."
     
+    show n angry
+
     n "You're completely missing the point of this! Ugh, why even bother."
+
+    show n shy
     
     n "Let's just read manga now."
 
@@ -428,26 +486,36 @@ label ice_cream_poem:
 
 label walk_home_with_natsuki:
 
-    n "Oh, club's over! TIme to clean up!"
+    show n surprise
 
-    v "Why are you so energetic over this.."
+    n "Oh, club's over! Time to clean up!"
+
+    v "Why are you so energetic over this?"
 
     "Maybe writing poems isn't so bad."
 
     if iceCreamPoem == True:
         v "I'm so glad it's over. I'm hungry for ice cream."
+
+        show n angry
         
         n "You definitely baited me with that poem."
+
+        show n shy
         
-        n "Let's just eat."
+        n "Whatever, let's just eat."
         
         v "Yay!!"
 
     jump home_2
 
 label soccer_game:
+
+    show s default
     
     v "She looks super surprised."
+
+    show s blush
 
     s "WOAH!"
     
@@ -456,13 +524,19 @@ label soccer_game:
 
         v "I mean it's Friday, the soccer team always has their games today."
 
-        s "I can't lie, it's pretty random of you to pull up today but it's cool"
+        show s embarrassed
+
+        s "I can't lie, it's pretty random of you to pull up today but it's cool!"
     elif leaveWithStelle == True:
         s "Vivian, you actually showed up?" 
 
         v "You literally asked me to yesterday, why wouldn't I."
 
+        show s embarrassed
+
         s "It was more like I blurted something out, but that's not the point. I'm happy you're here."
+
+    show s teasing
 
     s "Watch me win, okay?"
 
@@ -470,9 +544,11 @@ label soccer_game:
 
     v "WOW! You're a lot better at soccer than I thought!"
     
+    show s doubt
+
     s "I win and that's the first thing you say?"
     
-    v "Yep. I thought you were going to be the benchwarmer "
+    v "Yep. I thought you were going to be the benchwarmer."
     
     s "Vivian, I'm exhausted. If you're not going to say anything nice, then please, shut up."
     
@@ -482,33 +558,45 @@ label soccer_game:
         v "Be patient, remember?" 
 
     v "You were pretty good out there."
+
+    show s happy
     
     s "Thanks. I like winning."
     
     v "Want me to buy you something? You look pretty tired right now."
+
+    show s blush
     
     s "YES."
     
+    show s teasing
+
     s "I would kill for some fried chicken, sushi, and a liter of soda right now."
     
     v "HEY! You're the one with the job here, try to be more mindful of what you're ordering?"
     
+    show s doubt
+    
     s "Fine, I'll just go for the chicken today."
     
     v "Ok, but you're getting the cheapest one on the menu."
+
+    show s default
     
     "I can tell Stelle's trying not to complain."
     
     "She better not. I could've spent this on skincare..."
+
+    hide s default
 
     jump home_2
 
 label home_2:
 
     #maybe add more flavor text
-    if leaveWithStelle == True & soccerGame == True:
+    if leaveWithStelle == False & soccerGame == True:
         "I never knew Stelle was so fun! But knowing her, I don't know if I would trust my grade with her."
-    elif stayWithNatsuki == True & literatureClub == True:
+    elif (stayWithNatsuki == False & literatureClub == True) or (stayWithNatsuki == True & literatureClub == True):
         "Natsuki is such a reliable friend, but there's no harm in trying out new teammates. Should I play it safe with our project?"
 
     "Walking to school.."
@@ -516,29 +604,37 @@ label home_2:
     if leaveWithStelle == True & soccerGame == True:
         "I don't see Natsuki out here. She seems to be leaving earlier and earlier. Hopefully I can catch her at school."
     else:
+        show n neutral at right
         "Natsuki is waiting a couple blocks away from me, darting her eyes around."
 
-    "She sees me and waves her hand frantically."
+        show n surprise at center with move 
+        with hpunch
 
-    n "Why am I the one waiting? This sucked."
-    
-    n "You should've ran the second you saw me."
-    
-    v "I don't think I want to waste all my energy before lunch."
-    
-    n "I'm not buying you anymore food."
-    
-    v "You mean 'our' food, but I'll respect it."
-    
-    v "Just don't complain when I show up late again."
-    
-    n "You're so annoying!"
+        "She sees me and waves her hand frantically."
+
+        show n angry
+
+        n "Why am I the one waiting? This sucked."
+        
+        n "You should've ran the second you saw me."
+        
+        v "I don't think I want to waste all my energy before lunch."
+        
+        n "I'm not buying you anymore food."
+        
+        v "You mean 'our' food, but I'll respect it."
+        
+        v "Just don't complain when I show up late again."
+        
+        n "You're so annoying!"
+        
+        hide n angry
 
     #add z
 
     "Afterschool.."
     
-    "This project is going to suck."
+    "Man, this project is going to suck."
     
     "When I arrive to the library, I see Natsuki struggling to get a book."
     
@@ -564,8 +660,12 @@ label work_with_natsuki:
     "What am I thinking? Obviously Natsuki would be a better partner."
     
     "I grab the stool and plop it next to her feet."
+
+    show n angry at center
     
     n "So much for discrete!"
+
+    show n shy
     
     n "Can you just grab that book for me? I don't want to be caught using that creaky stool."
     
@@ -574,35 +674,51 @@ label work_with_natsuki:
     "I grab it anyways and look at the cover."
     
     v "Is this what our project is going to be? A presentation about nature?"
+
+    show n laugh
     
     n "Yep! Nature has a lot of interesting topics we can approach so we can add a lot of research about-"
     
     v "I'm not writing all that!"
+
+    show n angry
     
     n "You're not writing anything! Wait-"
+
+    show n surprise
     
     n "Did you come here so we could work on the project together?"
     
     v "Yeah, you're the best candidate."
 
     if leaveWithStelle == True & soccerGame == True:
+
+        show n angry
+
         n "Was the other candidate Stelle? Why would you even consider her as an option?"
         
         n "We can work together but you have to actually work on the project, ok?" #(italics)
     else:
+        show n laugh
         n "What other option would there be?" #(beaming)
         
         n "Let's make an awesome project!"
 
     v "Ok! But you're going to be the one that has to write all the in-depth research. It sounds boring."
     
+    show n angry
+
     n "Ugh, fine."
 
     "One week later.."
 
+    show n laugh with hpunch
+
     n "- and that's why the preservation of lush flora is vital to ensuring that our land can stay verdantly frondescence!"
-    
+
     z "Well done girls! This was a great presentation about the importance of environmentalism, especially in your generation."
+    
+    show n smile
     
     n "Thanks, our research had a lot to do with-"
     
@@ -611,14 +727,22 @@ label work_with_natsuki:
     v "Thanks Ms. Zoru! We'll let the next group present now."
     
     "I shoot a look to Natsuki."
+
+    show n shy
     
     "She pouts but agrees and we go back to our seats."
+
+    hide n shy with moveoutright
     
     "Stelle's group presents next!"
+
+    show s default at center with moveinleft
     
     "..."
     
     "It's really bad. There's no research done at all about their topic. I can see Ms. Zoru's face frown the entire time. Thank goodness I didn't choose her."
+
+    hide s default
 
     "After class.."
     
@@ -640,31 +764,49 @@ label work_with_natsuki:
 
 label complement_natsuki:
 
+    show n laugh
+
     v "You're so good at writing! I really liked how energetic you were when we were presenting."
     
-    n "Thanks Vivian." #(happyy/blushing??)
+    show n laugh
+    
+    n "Thanks Vivian."
+
+    show n smile
     
     n "You did great too! The way you formatted the information made it easier to follow."
     
     v "It wasn't that hard. You just put everything in giant blocks of text. I couldn't see anything you put."
+    
+    show n angry
     
     n "Hey! It had a lot of important information and was needed so that-"
     
     v "Ack! Whatever then!"
     
     v "Anyways, after all this, we should celebrate!"
+
+    show n neutral
     
     n "That's not a bad idea."
+
+    show n surprise
     
     n "Wanna come to my house? We can bake cupcakes."
+
+    show n shy
     
     n "Only if you want too! No pressure, I can bake them by myself."
     
     v "(laughs)"
     
     v "I like baking, c'mon, I'll actually run this time!"
+
+    show n angry
     
     n "Wait up! You don't even have the key to my house!"
+
+    hide n angry with moveoutright
 
     jump home_3
 
@@ -687,13 +829,19 @@ label be_normal:
 label work_with_stelle:
 
     "I go up to Stelle. I don't think she notices I'm in her face."
+
+    show s happy
     
     v "Hello?"
     
+    show s worried
+
     s "Ahh!"
     
     "She drops her phone in surprise."
     
+    show s doubt
+
     s "Hey! If my screen cracks because of you, you owe me bad." #(italics, mad?)
     
     v "Aren't you supposed to be attentive on the job?"
@@ -726,12 +874,20 @@ label work_with_stelle:
         s "Wouldn't you wanna to partner up with Natsuki more?"
         
         v "I want to partner up with you. You seem more fun!" #(italics)
+
+        show s default
         
         s "Um, cool!"
     else:
+        show s default
+
         s "Oh sure!"
 
+    show s embarrassed
+
     s "But I'm not really in the mood to do it right now."
+
+    show s teasing
     
     s "Plus, isn't it due next week? I think we have time to hang around first."
 
@@ -752,30 +908,46 @@ label lock_in:
     v "Wouldn't you like it if we finished the project now rather than do it all later?"
     
     v "You aren't even doing anything right now! Lets just start today."
+
+    show s doubt
     
     s "Fine."
+
+    show s default with hpunch
     
     "Stelle jumps over the help desk and hops to my side."
     
     v "???"
     
     v "Couldn't you use the swinging door instead?"
+
+    show s teasing
     
     s "I lost the key to it so it won't swing anymore." #:)
     
     "I'm doomed."
 
+    scene bg classroom day with dissolve
+
     "One week later.."
+
+    show s blush
     
     s "-and that's why cats are better than dogs!"
     
     z "What an interesting project! I like the niche research you found."
+
+    show s happy
     
     s "Thanks Ms. Zoru!"
     
     "We head back to our seats."
+
+    hide s happy with moveoutright
     
     "Natsuki's group presents next!"
+
+    show n neutral with moveinleft
     
     "..."
     
@@ -783,24 +955,37 @@ label lock_in:
     
     "Ms. Zoru is the only one awake. At least they're going to get a good grade."
 
+    scene bg school
     
     "After class..."
     
     v "That was pretty good! I'm surprised you didn't mess it up."
+
+    show s doubt
     
     s "Me? You're the one who kept adding things after I thought we were done."
+
+    show s default
     
     s "But I agree. I kinda need her to raise my grade."
     
     v "She totally will. She complemented us and everything!"
+
+    show s blush
     
     "Stelle smiles."
+
+    show s embarrassed
     
     s "Thanks for keeping me on track. If I get a B, I'll treat you to some fries."
+
+    show s happy
     
     s "Wanna come with me? I got soccer practice now."
 
     v "Sure!"
+
+    hide s happy
 
     jump home_3
 
@@ -809,12 +994,16 @@ label listen_to_stelle:
     v "You're right, we have a lot of time."
     
     v "What are you playing?"
+
+    show s blush
     
     s "Oh it's-"
     
     "We spend the rest of her shift playing video games."
     
     "And the day after that. And maybe a bit more."
+
+    scene bg classroom day with dissolve
 
     "One week later"
     
