@@ -25,21 +25,21 @@ image side v smile = Image("hoshi_school_smile.png", oversample = 2)
 image side v surprised = Image("hoshi_school_surprised.png", oversample = 2)
 image side v upset = Image("hoshi_school_upset.png", oversample = 2)
 
-image n neutral = Image("Eve_Neutral.png", oversample = 2)
-image n smile = Image("Eve_Smile.png", oversample = 2)
-image n shy = Image("Eve_Shy.png", oversample = 2)
-image n laugh = Image("Eve_Laugh.png", oversample = 2)
-image n cry = Image("Eve_Cry.png", oversample = 2)
-image n angry = Image("Eve_Angry.png", oversample = 2)
-image n surprise = Image("Eve_Surprise.png", oversample = 2)
+image n neutral = Image("Eve_Neutral.png", oversample = 2.1)
+image n smile = Image("Eve_Smile.png", oversample = 2.1)
+image n shy = Image("Eve_Shy.png", oversample = 2.1)
+image n laugh = Image("Eve_Laugh.png", oversample = 2.1)
+image n cry = Image("Eve_Cry.png", oversample = 2.1)
+image n angry = Image("Eve_Angry.png", oversample = 2.1)
+image n surprise = Image("Eve_Surprise.png", oversample = 2.1)
 
-image s default = Image("Alice_Default.png", oversample = 2)
-image s happy = Image("Alice_Happy.png", oversample = 2)
-image s teasing = Image("Alice_Teasing.png", oversample = 2)
-image s blush = Image("Alice_Blush.png", oversample = 2)
-image s embarrassed = Image("Alice_Embarrassed.png", oversample = 2)
-image s doubt = Image("Alice_Doubt.png", oversample = 2)
-image s worried = Image("Alice_Worried.png", oversample = 2)
+image s default = Image("Alice_Default.png", oversample = 1.7)
+image s happy = Image("Alice_Happy.png", oversample = 1.7)
+image s teasing = Image("Alice_Teasing.png", oversample = 1.7)
+image s blush = Image("Alice_Blush.png", oversample = 1.7)
+image s embarrassed = Image("Alice_Embarrassed.png", oversample = 1.7)
+image s doubt = Image("Alice_Doubt.png", oversample = 1.7)
+image s worried = Image("Alice_Worried.png", oversample = 1.7)
 
 image bg street morning = "Street_Summer_Day.png"
 image bg street evening = "Street_Summer_Evening.png"
@@ -47,59 +47,78 @@ image bg street stars = "Street_Summer_Stars.png"
 image bg classroom day = "Classroom_Day.png"
 image bg backstreet afternoon = "Backstreet_Summer_Afternoon.png"
 image bg school = "Old_School.png"
-#need library
+#need library bg and soccer field
 
 label start:
 
-    scene bg street morning
+    scene bg street morning with dissolve
     show side v smile
     #this looks kinda weird 
     show n angry with moveinleft 
+    with hpunch
 
     n "WAIT FOR ME!"  #(try to get the text to go like "meeeeeeeeeeeeeeeeee")
-
-    with hpunch
     
     "A high pitched voice squeals behind me."
 
     v "Natsuki, school is going to start in ten minutes. What are you so worried about?"
 
+    show n neutral
+
     n "Ten minutes is cutting way too close. You should pick up the place so we can make it on time."
 
     v "Stop being a nerd. Ms. Zoru won't be pissed if we're a couple minutes late."
+    
+    show n angry
 
     n "Shut up! I don't care! Leave me alone then!"
     
-    hide n angry 
-    with moveoutright
+    hide n angry with moveoutright
 
     "Damn, she just sprinted away."
 
+    with dissolve
+
     #add more!
 
-    "The library is loud today. It's probably because of exam season, but still"
+    "The library is loud today. It's probably because of exam season, but still."
+
+    show n surprise with dissolve
 
     n "Are you even paying attention? Ms. Zoru is definitely going to assign a project or test or whatever soon and we have to be prepared."
 
     v "Sorry! But we don't even know what's coming up, why should I be worried now?"
 
-    n "Groans."
+    show n angry 
+
+    "Natsuki groans."
 
     n "That's not the point, we should-"
+
+    show n angry at left with move
+    show s default at right with moveinright
 
     s "Natsuki, this is a library you know? You're screaming your head off like a tick bit you."
 
     v "I never took you as someone who studies, Stelle."
 
+    show s doubt
+
     s "Ew no. I'm working as a library assistant!"
 
     n "Why the hell would they hire you and not me?? I come here way more often and I always turn my library books on time and-"
 
-    s "It's because you don't shut up. They said that they hired me because I'm such a hard worker and they admire my skills."
+    show s teasing
+
+    s "It's because you don't shut up. They also said that they hired me because I'm such a hard worker and they admire my skills."
 
     v "You sound like a liar."
 
+    show s happy
+
     s "You sound like you don't want money."
+
+    show s default
 
     s "Anyways, my shift is almost over and you don't like you're doing anything productive. Vivian, do you wanna hang out with me?"
 
@@ -121,12 +140,20 @@ label stay_with_natsuki:
     v "No thanks, I'm going to stay with Natsuki."
     
     v "I don't feel like going outside right now."
+
+    show s doubt 
     
     s "That's lame. Whatever, see you around I guess."
+
+    hide s doubt with moveoutright
     
     "She leaves in a rush. Is she embarrassed?"
+
+    show n smile at center with move
     
     n "Yay! I'm glad you decided to stay."
+
+    show n laugh
     
     n "I mean, you owe me, so obviously it would make sense that you should stay."
     
@@ -141,8 +168,10 @@ label stay_with_natsuki:
     "Nah."
     
     v "You should go back to studying since you're soo worried about that project."
+
+    show n angry with hpunch
     
-    n "I am! This is incredibly serious to my grades!"
+    n "I am! This is incredibly serious for my grades!"
     
     v "Hush Natsuki!"
 
@@ -151,18 +180,32 @@ label stay_with_natsuki:
 label leave_with_stelle:
 
     v "Sorry Natsuki, I don't feel like studying. I'm going to leave with Stelle."
+
+    show n shy at left 
     
     n "Oh..."
-    
+
     n "I mean it's fine. I didn't need you to study anyways. Go if you want, I don't care."
-    "Natsuki seems down, but Stelle's never asked me to hangout before."
+
+    hide n shy at left with moveoutleft
     
+    "Natsuki seems down, but Stelle's never asked me to hangout before."
+
+    #stelle moving is kinda weird
+    show s blush at center with moveinright
+
     s "Nice!"
     
+    with dissolve
+    scene bg school
+    show s teasing
+
     s "Not gonna lie, you looked super bored with Natsuki. Why do you hang with her so much anyways?"
     
     v "I mean, I knew her for a long time. I feel like I should branch out with more people, but I don't want to leave her behind."
     
+    show s default
+
     "Stelle furrows her eyebrows for a second, but then just as quickly relaxes and smiles."
     
     s "Okay."
@@ -172,6 +215,8 @@ label leave_with_stelle:
     v "Are you serious??"
     
     "Stelle just laughs and runs faster. I don't want to be behind, so I rush to keep up."
+
+    with dissolve
     
     "I follow her to an empty playground."
     
@@ -217,8 +262,12 @@ label leave_with_stelle:
 label complement_stelle:
 
     v "You know, I've never noticed how pretty your eyes are."
+
+    show s embarrassed
     
     s "Hey! What made you say that?"
+
+    show s happy
     
     s "Just focus on the sky."
 
@@ -234,13 +283,19 @@ label continue_looking_at_the_stars:
 
     "We continue laying there for a while, but soon we have to leave."
 
+    show s teasing
+
     s "Whoops, forgot I'm out of charge."
     
     v "Do you want me to walk home with you? You can use my phone as a flashlight."
+
+    show s default
     
     s "Nah. I know how to get home safely."
     
     v "Ok! Thanks for taking me out here, it was really fun."
+
+    show s blush
     
     s "No problem, but remember, you owe me next time! See you tomorrow, Vivian."
 
