@@ -1,7 +1,7 @@
 define v = Character("Vivian", color="#60a860")
-define n = Character("Natsuki", color="#a36fa5")
-define s = Character("Stelle", color="#5981ca")
-define z = Character("Ms. Zoru", color="#d16a6a")
+define n = Character("Natsuki", color="#5981ca")
+define s = Character("Stelle", color="#bb619d")
+define z = Character("Ms. Zoru", color="#d15858")
 
 default natsuki_points = 0
 default stelle_points = 0
@@ -41,13 +41,17 @@ image s embarrassed = Image("Alice_Embarrassed.png", oversample = 1.7)
 image s doubt = Image("Alice_Doubt.png", oversample = 1.7)
 image s worried = Image("Alice_Worried.png", oversample = 1.7)
 
+image bg room day = "Bedroom_Day.png"
+image bg room evening = "Bedroom_Evening.png"
+image bg room night = "Bedroom_Night.png"
 image bg street morning = "Street_Summer_Day.png"
 image bg street evening = "Street_Summer_Evening.png"
 image bg street stars = "Street_Summer_Stars.png"
 image bg classroom day = "Classroom_Day.png"
 image bg backstreet afternoon = "Backstreet_Summer_Afternoon.png"
 image bg school = "Old_School.png"
-#need library bg and soccer field
+image bg school hallway = "School_Hallway_Day.png"
+#need library, soccer field, another school room and park bg
 
 label start:
 
@@ -55,9 +59,8 @@ label start:
     show side v smile
     #this looks kinda weird 
     show n angry with moveinleft 
-    with hpunch
 
-    n "WAIT FOR ME!"  #(try to get the text to go like "meeeeeeeeeeeeeeeeee")
+    n "WAIT FOR ME!" with hpunch #(try to get the text to go like "meeeeeeeeeeeeeeeeee")
     
     "A high pitched voice squeals behind me."
 
@@ -149,16 +152,18 @@ label stay_with_natsuki:
     
     "She leaves in a rush. Is she embarrassed?"
 
-    show n smile at center with move
+    show n laugh at center with move
     
     n "Yay! I'm glad you decided to stay."
 
-    show n laugh
+    show n smile
     
     n "I mean, you owe me, so obviously it would make sense that you should stay."
     
     v "I need a job like Stelle, then I wouldn't need to rely on you so much."
     
+    show n surprise
+
     n "Hey! I'm joking, you know? I don't mind paying for you."
     
     "She's right, I shouldn't care."
@@ -174,6 +179,8 @@ label stay_with_natsuki:
     n "I am! This is incredibly serious for my grades!"
     
     v "Hush Natsuki!"
+
+    hide n angry
 
     jump go_home
 
@@ -219,8 +226,8 @@ label leave_with_stelle:
     "Stelle just laughs and runs faster. I don't want to be behind, so I rush to keep up."
 
     hide s blush with moveoutright
-    with dissolve
     show s default
+    with dissolve
 
     "I follow her to an empty playground."
     
@@ -242,11 +249,11 @@ label leave_with_stelle:
    
     "She pretends to ignore me and heads to the swings. I just follow her."
 
-    hide s doubt with moveoutright
+    hide s doubt with moveoutleft
 
     "Soon, it's getting dark out."
 
-    show s happy
+    show s happy with dissolve
     
     v "Ugh, I'm getting tired."
 
@@ -256,7 +263,7 @@ label leave_with_stelle:
     
     "Wow, the sky is so clear here!"
     
-    v "This is awesome, how did you know about this?"
+    v "This is awesome! How did you know about this?"
 
     show s happy
     
@@ -303,7 +310,9 @@ label continue_looking_at_the_stars:
 
     "We continue laying there for a while, but soon we have to leave."
 
+    scene bg street stars
     show s teasing
+    with dissolve
 
     s "Whoops, forgot I'm out of charge."
     
@@ -325,6 +334,8 @@ label continue_looking_at_the_stars:
 
 label go_home:
 
+    scene bg room night with dissolve
+
     "This was a pretty fun day. Hopefully tomorrow will be the same."
 
     scene bg street morning with dissolve
@@ -338,7 +349,7 @@ label go_home:
 
     "I step out of the house and see someone familiar in the distance."
 
-    show n neutral at right
+    show n neutral at right with dissolve
 
     v "Hey Natsuki! Don't be in such a rush again!"
 
@@ -361,12 +372,12 @@ label go_home:
         "Where will you go?"
 
         "Go to the literature club with Natsuki":
-            $ literatureClub == True
+            $ literatureClub = True
             $ natsuki_points += 1
             jump literature_club
 
         "Go to Stelle's soccer game":
-            $ soccerGame == True
+            $ soccerGame = True
             $ stelle_points += 1
             jump soccer_game
 
@@ -412,7 +423,7 @@ label literature_club:
             jump love_poem
 
         "Write a poem about ice cream":
-            $ iceCreamPoem == True
+            $ iceCreamPoem = True
             $ natsuki_friend += 1
             jump ice_cream_poem
 
@@ -452,7 +463,7 @@ label ice_cream_poem:
 
     "I'm pretty hungry. I'm just going to write a poem about ice cream."
 
-    show n default with moveinleft
+    show n neutral with moveinleft
 
     "Natsuki comes back with the supplies and I get to work."
     
@@ -468,7 +479,7 @@ label ice_cream_poem:
     
     n "There's no way this helped your writing skills at all."
 
-    show n neutral
+    show n shy
     
     n "Now I'm craving ice cream too..."
     
@@ -478,7 +489,7 @@ label ice_cream_poem:
 
     n "You're completely missing the point of this! Ugh, why even bother."
 
-    show n shy
+    show n smile
     
     n "Let's just read manga now."
 
@@ -486,7 +497,7 @@ label ice_cream_poem:
 
 label walk_home_with_natsuki:
 
-    show n surprise
+    show n surprise with dissolve
 
     n "Oh, club's over! Time to clean up!"
 
@@ -580,23 +591,23 @@ label soccer_game:
     s "Fine, I'll just go for the chicken today."
     
     v "Ok, but you're getting the cheapest one on the menu."
-
-    show s default
     
     "I can tell Stelle's trying not to complain."
     
     "She better not. I could've spent this on skincare..."
 
-    hide s default
+    hide s doubt
 
     jump home_2
 
 label home_2:
 
+    scene bg room evening with dissolve
+
     #maybe add more flavor text
-    if leaveWithStelle == False & soccerGame == True:
+    if soccerGame == True:
         "I never knew Stelle was so fun! But knowing her, I don't know if I would trust my grade with her."
-    elif (stayWithNatsuki == False & literatureClub == True) or (stayWithNatsuki == True & literatureClub == True):
+    else:
         "Natsuki is such a reliable friend, but there's no harm in trying out new teammates. Should I play it safe with our project?"
 
     "Walking to school.."
@@ -661,7 +672,7 @@ label work_with_natsuki:
     
     "I grab the stool and plop it next to her feet."
 
-    show n angry at center
+    show n angry at center with dissolve
     
     n "So much for discrete!"
 
@@ -712,6 +723,7 @@ label work_with_natsuki:
 
     "One week later.."
 
+    scene bg classroom day with dissolve
     show n laugh with hpunch
 
     n "- and that's why the preservation of lush flora is vital to ensuring that our land can stay verdantly frondescence!"
@@ -745,7 +757,11 @@ label work_with_natsuki:
     hide s default
 
     "After class.."
-    
+
+    scene bg street evening
+    show n laugh 
+    with dissolve
+
     "I have nothing to do, so I'll just hang out with Natsuki."
     
     "Our project was actually pretty cool, even if I didn't really understand what she was saying."
@@ -764,15 +780,13 @@ label work_with_natsuki:
 
 label complement_natsuki:
 
-    show n laugh
-
     v "You're so good at writing! I really liked how energetic you were when we were presenting."
     
-    show n laugh
+    show n smile
     
     n "Thanks Vivian."
 
-    show n smile
+    show n laugh
     
     n "You did great too! The way you formatted the information made it easier to follow."
     
@@ -814,13 +828,19 @@ label be_normal:
 
     v "We did a great job presenting! Ms. Zoru has to give us an A on this."
 
+    show n smile
+
     n "Of course she's going to give us an A. Did you not pay attention to her interest after we presented?"
+    
+    show n surprise
     
     n "She asked us so many questions!"
     
     v "She asked us one."
     
     v "And you were the one that tried to keep talking for the rest of the class!"
+    
+    show n angry
     
     n "I was answering her question!"
 
@@ -830,13 +850,13 @@ label work_with_stelle:
 
     "I go up to Stelle. I don't think she notices I'm in her face."
 
-    show s happy
+    show s happy 
     
     v "Hello?"
     
     show s worried
 
-    s "Ahh!"
+    s "Ahh!" with hpunch
     
     "She drops her phone in surprise."
     
@@ -856,7 +876,7 @@ label work_with_stelle:
 
     "She looks at me suspiciously and raises her eyebrows."
     
-    s "I think you know how to use the library computers."
+    s "I think you know how to use the library computers." #with vpunch?
     
     v "What? No I'm-"
     
@@ -1005,7 +1025,7 @@ label listen_to_stelle:
 
     scene bg classroom day with dissolve
 
-    "One week later"
+    "One week later..."
     
     "We end up doing our slides the day before it's due."
     
@@ -1013,7 +1033,7 @@ label listen_to_stelle:
     
     "I quickly review the presentation before we're up."
     
-    "WAIT."
+    "WAIT." with hpunch
     
     "Did Stelle just copy and paste her slides?"
     
@@ -1023,15 +1043,21 @@ label listen_to_stelle:
 
     
     v "Stelle! What the hell is this?"
+
+    show s default with dissolve
     
     s "It's my slides."
     
     v "Did you literally just copy and paste everything? You don't write this professionally."
     
-    s "Hey, this is a last minute project. There's no way I could fill up all those slides in time."
+    show s worried
+    
+    s "Hey, this is a last minute project! There's no way I could fill up all those slides in time."
     
     v "Seriously? Ms. Zoru can tell this is fake. Everyone can tell this is fake."
     
+    show s doubt
+
     s "You're the one that wanted to partner with me!"
     
     "Before we can keep arguing, it's our turn to present."
@@ -1066,6 +1092,8 @@ label throw_stelle_under_the_bus:
 
     v "Stelle's slides were just copy and pasted from our sources. Mine are written by me."
     
+    show s worried
+    
     s "Hey!"
     
     v "It's true though. You were too lazy to do them, weren't you?"
@@ -1082,18 +1110,29 @@ label throw_stelle_under_the_bus:
 
     "Later.."
     
+    scene bg school hallway
+    show s doubt
+    with dissolve
+
     s "What the hell Vivian?"
     
+    show s worried
+
     s "You were the one that asked to work with me. You procrastinated too."
     
     s "I don't understand why you needed to rat me out like that."
     
     v "I didn't expect you to do that! I actually worked on my part."
+
+    show s doubt
     
     s "That's not the- ugh, what's the point."
     
     s "Whatever Vivian, thanks for making me retake her stupid class."
     
+    hide s doubt with moveoutright 
+    with hpunch
+
     "She stomps away."
     
     "That's not my fault, but whatever."
@@ -1106,33 +1145,53 @@ label take_the_blame:
     
     z "I'm pretty disappointed in the both of you."
     
-    z "Since you were honest about it, I'll let you redo the project with 10% off."
+    z "Since you were honest about it, I'll let you redo the project with 10 percent off."
+    
+    show s blush
     
     s "Seriously?"
     
     z "Or not. You both could get a zero."
+
+    show s embarrassed
     
     s "NO! I mean, thanks, we'll redo the presentation."
 
     "Later.."
+
+    scene bg school hallway
+    show s embarrassed
+    with dissolve
     
     s "Vivian, thank you so much."
+
+    show s worried
     
     s "You didn't need to put yourself down too."
     
     v "It was kinda my fault too. We both procrastinated a lot on this, but you shouldn't have used copied in such an obvious way."
     
+    show s embarrassed
+    
     s "Yea, I'm sorry about that."
     
+    show s default
+
     s "We should probably get started on the redo, right?"
     
     v "Definitely! Let's go to library before it closes."
     
+    show s blush
+
     s "Okay!"
+
+    hide s blush
 
     jump home_3
 
 label home_3:
+
+    show bg room evening
 
     if throwStelleUnderTheBus == True:
         "Wow, that sucked."
@@ -1157,6 +1216,10 @@ label home_3:
             jump stelle_friendship_ending
 
 label natsuki_friendship_ending:
+
+    scene bg backstreet afternoon
+    show n laugh
+    with dissolve
 
     "These past few days have been hectic."
 
@@ -1212,7 +1275,3 @@ label stelle_yuri_ending:
     "I'm excited to go out with Stelle again. I hear the stars are going to look amazing tonight!"
 
     return
-
-    # This ends the game.
-
-    #return
