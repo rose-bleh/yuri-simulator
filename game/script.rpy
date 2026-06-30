@@ -1,5 +1,5 @@
-define v = Character("Vivian", color="#60a860")
-define n = Character("Natsuki", color="#5981ca")
+define v = Character("Vivian", color="#60a860", image = "vivian")
+define n = Character("Natsuki", color="#db9833")
 define s = Character("Stelle", color="#bb619d")
 define z = Character("Ms. Zoru", color="#d15858")
 
@@ -18,12 +18,12 @@ default lockIn = False
 default throwStelleUnderTheBus = False
 default takeTheBlame = False
 
-image side v embarrassed1 = Image("hoshi_school_embarrassed1.png", oversample = 2)
-image side v embarrassed2 = Image("hoshi_school_embarrassed2.png", oversample = 2)
-image side v sad = Image("hoshi_school_sad.png", oversample = 2)
-image side v smile = Image("hoshi_school_smile.png", oversample = 2)
-image side v surprised = Image("hoshi_school_surprised.png", oversample = 2)
-image side v upset = Image("hoshi_school_upset.png", oversample = 2)
+image side vivian embarrassed1 = Image("hoshi_school_embarrassed1.png", oversample = 2)
+image side vivian embarrassed2 = Image("hoshi_school_embarrassed2.png", oversample = 2)
+image side vivian sad = Image("hoshi_school_sad.png", oversample = 2)
+image side vivian smile = Image("hoshi_school_smile.png", oversample = 2)
+image side vivian surprised = Image("hoshi_school_surprised.png", oversample = 2)
+image side vivian upset = Image("hoshi_school_upset.png", oversample = 2)
 
 image n neutral = Image("Eve_Neutral.png", oversample = 2.1)
 image n smile = Image("Eve_Smile.png", oversample = 2.1)
@@ -48,15 +48,25 @@ image bg street morning = "Street_Summer_Day.png"
 image bg street evening = "Street_Summer_Evening.png"
 image bg street stars = "Street_Summer_Stars.png"
 image bg classroom day = "Classroom_Day.png"
+image bg classroom 1 = "classroom 1.png"
+image bg classroom 2 = "classroom 2.png"
+image bg classroom 3 = "classroom 3.png"
 image bg backstreet afternoon = "Backstreet_Summer_Afternoon.png"
 image bg school = "Old_School.png"
 image bg school hallway = "School_Hallway_Day.png"
-#need library, soccer field, another school room and park bg
+image bg library 1 = "df8thpa-5b2800e2-79c6-4819-b1eb-ac1621a97b05.png"
+image bg library 2 = "df8thom-53b1b6db-a337-4cc0-bae1-bb8c957bebe6.png"
+image bg library 3 = "df8thoy-095eeb91-a654-4624-9f96-af1944ab7d0d.png"
+image bg park day = "df8ths0-7cf5b5d8-820f-4963-8043-14f889a46e9e.png"
+image bg park afternoon = "df8thr5-0d8201eb-dcbc-4d56-b034-32850e54e734.png"
+image bg park night = "df8thri-b3ec9706-d211-4b52-9129-9feee3c3b13b.png"
+#need soccer field and park bg
 
 label start:
 
     scene bg street morning with dissolve
-    show side v smile
+    v smile
+    #onlayer screens
     #this looks kinda weird 
     show n angry with moveinleft 
 
@@ -84,6 +94,8 @@ label start:
 
     #add more!
 
+    scene bg library 1 with dissolve
+    
     "The library is loud today. It's probably because of exam season, but still."
 
     show n surprise with dissolve
@@ -203,9 +215,9 @@ label leave_with_stelle:
 
     s "Nice!"
     
-    with dissolve
     scene bg school
     show s teasing
+    with dissolve
 
     s "Not gonna lie, you looked super bored with Natsuki. Why do you hang with her so much anyways?"
     
@@ -226,16 +238,17 @@ label leave_with_stelle:
     "Stelle just laughs and runs faster. I don't want to be behind, so I rush to keep up."
 
     hide s blush with moveoutright
+    scene bg park afternoon
     show s default
     with dissolve
 
-    "I follow her to an empty playground."
+    "I follow her to an empty park."
     
-    "Wait, did I seriously waste my energy to go play on the swings with her?"
+    "Wait, did I seriously waste my energy to go play around with her?"
 
     show s teasing
     
-    s "So...do you wanna play?"
+    s "So...do you wanna talk?"
     
     "I regret this so much."
     
@@ -243,18 +256,22 @@ label leave_with_stelle:
 
     show s doubt
     
-    s "Don't be so pissy. Of course this isn't the reason I got you to chase me here. Just be patient."
+    s "Don't be so pissy."
+    
+    s "Of course this isn't the reason I got you to chase me here. Just be patient."
     
     v "Patience? Coming from you?"
    
-    "She pretends to ignore me and heads to the swings. I just follow her."
+    "She pretends to ignore me and heads to the bench. I just follow her."
 
     hide s doubt with moveoutleft
 
     "Soon, it's getting dark out."
 
-    show s happy with dissolve
-    
+    scene bg park night
+    show s happy 
+    with dissolve
+
     v "Ugh, I'm getting tired."
 
     show s doubt
@@ -363,6 +380,8 @@ label go_home:
         "She's acting a little more distant. Is she still hung up over yesterday?"
 
     "Later..."
+
+    scene bg school hallway with dissolve
     
     "School is over!"
     
@@ -385,6 +404,7 @@ label literature_club:
 
     "I shouldn't ditch Natsuki. She's probably waiting for me."
 
+    scene bg classroom 1 with dissolve
     show n shy
 
     "Natsuki is nervously outside the club door, looking around. I was right."
@@ -612,6 +632,8 @@ label home_2:
 
     "Walking to school.."
 
+    scene bg street morning with dissolve
+
     if leaveWithStelle == True & soccerGame == True:
         "I don't see Natsuki out here. She seems to be leaving earlier and earlier. Hopefully I can catch her at school."
     else:
@@ -643,7 +665,11 @@ label home_2:
 
     #add z
 
+    scene bg school hallway with dissolve
+
     "Afterschool.."
+
+    scene bg library 1 with dissolve
     
     "Man, this project is going to suck."
     
@@ -669,6 +695,8 @@ label home_2:
 label work_with_natsuki:
 
     "What am I thinking? Obviously Natsuki would be a better partner."
+
+    scene bg library 2
     
     "I grab the stool and plop it next to her feet."
 
@@ -708,7 +736,7 @@ label work_with_natsuki:
 
         n "Was the other candidate Stelle? Why would you even consider her as an option?"
         
-        n "We can work together but you have to actually work on the project, ok?" #(italics)
+        n "We can work together, but you have to {i}actually{/i} work on the project, ok?"
     else:
         show n laugh
         n "What other option would there be?" #(beaming)
@@ -844,13 +872,17 @@ label be_normal:
     
     n "I was answering her question!"
 
+    hide n angry
+
     jump home_3
 
 label work_with_stelle:
 
+    scene bg library 3 with dissolve
+
     "I go up to Stelle. I don't think she notices I'm in her face."
 
-    show s happy 
+    show s happy with dissolve
     
     v "Hello?"
     
@@ -862,7 +894,9 @@ label work_with_stelle:
     
     show s doubt
 
-    s "Hey! If my screen cracks because of you, you owe me bad." #(italics, mad?)
+    s "{i}Hey{/i}!"
+    
+    s "If my screen cracks because of you, you owe me bad." 
     
     v "Aren't you supposed to be attentive on the job?"
     
@@ -893,7 +927,7 @@ label work_with_stelle:
         
         s "Wouldn't you wanna to partner up with Natsuki more?"
         
-        v "I want to partner up with you. You seem more fun!" #(italics)
+        v "I want to partner up with {i}you{/i}. You seem more fun!"
 
         show s default
         
@@ -1191,7 +1225,7 @@ label take_the_blame:
 
 label home_3:
 
-    show bg room evening
+    show bg room evening with dissolve
 
     if throwStelleUnderTheBus == True:
         "Wow, that sucked."
@@ -1217,8 +1251,8 @@ label home_3:
 
 label natsuki_friendship_ending:
 
-    scene bg backstreet afternoon
-    show n laugh
+    scene bg street evening
+    show n smile
     with dissolve
 
     "These past few days have been hectic."
@@ -1235,6 +1269,10 @@ label natsuki_friendship_ending:
 
 
 label natsuki_yuri_ending:
+
+    scene bg backstreet afternoon
+    show n laugh
+    with dissolve
 
     "These past few days have been hectic."
 
@@ -1264,6 +1302,10 @@ label stelle_friendship_ending:
 
 label stelle_yuri_ending:
 
+    scene bg park day
+    show s blush
+    with dissolve
+
     "These past few days have been hectic."
 
     "I'm glad I could spend a lot of it with my girlfriend, Stelle."
@@ -1274,4 +1316,4 @@ label stelle_yuri_ending:
 
     "I'm excited to go out with Stelle again. I hear the stars are going to look amazing tonight!"
 
-    return
+    return 
