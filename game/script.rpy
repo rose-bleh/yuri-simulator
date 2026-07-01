@@ -18,12 +18,12 @@ default lockIn = False
 default throwStelleUnderTheBus = False
 default takeTheBlame = False
 
-image side vivian embarrassed1 = Image("hoshi_school_embarrassed1.png", oversample = 2)
-image side vivian embarrassed2 = Image("hoshi_school_embarrassed2.png", oversample = 2)
-image side vivian sad = Image("hoshi_school_sad.png", oversample = 2)
-image side vivian smile = Image("hoshi_school_smile.png", oversample = 2)
-image side vivian surprised = Image("hoshi_school_surprised.png", oversample = 2)
-image side vivian upset = Image("hoshi_school_upset.png", oversample = 2)
+image side vivian embarrassed1 = Image("hoshi_school_embarrassed1.png", oversample = 1.7)
+image side vivian embarrassed2 = Image("hoshi_school_embarrassed2.png", oversample = 1.7)
+image side vivian sad = Image("hoshi_school_sad.png", oversample = 1.7)
+image side vivian smile = Image("hoshi_school_smile.png", oversample = 1.7)
+image side vivian surprised = Image("hoshi_school_surprised.png", oversample = 1.7)
+image side vivian upset = Image("hoshi_school_upset.png", oversample = 1.7)
 
 image n neutral = Image("Eve_Neutral.png", oversample = 2.1)
 image n smile = Image("Eve_Smile.png", oversample = 2.1)
@@ -65,7 +65,6 @@ image bg park night = "df8thri-b3ec9706-d211-4b52-9129-9feee3c3b13b.png"
 label start:
 
     scene bg street morning with dissolve
-    v smile
     #onlayer screens
     #this looks kinda weird 
     show n angry with moveinleft 
@@ -74,13 +73,13 @@ label start:
     
     "A high pitched voice squeals behind me."
 
-    v "Natsuki, school is going to start in ten minutes. What are you so worried about?"
+    v surprised "Natsuki, school is going to start in ten minutes. What are you so worried about?"
 
     show n neutral
 
     n "Ten minutes is cutting way too close. You should pick up the place so we can make it on time."
 
-    v "Stop being a nerd. Ms. Zoru won't be pissed if we're a couple minutes late."
+    v upset "Stop being a nerd. Ms. Zoru won't be pissed if we're a couple minutes late."
     
     show n angry
 
@@ -102,7 +101,8 @@ label start:
 
     n "Are you even paying attention? Ms. Zoru is definitely going to assign a project or test or whatever soon and we have to be prepared."
 
-    v "Sorry! But we don't even know what's coming up, why should I be worried now?"
+    v surprised "Sorry!"
+    v smile "But we don't even know what's coming up, why should I be worried now?"
 
     show n angry 
 
@@ -115,7 +115,7 @@ label start:
 
     s "Natsuki, this is a library you know? You're screaming your head off like a tick bit you."
 
-    v "I never took you as someone who studies, Stelle."
+    v surprised "I never took you as someone who studies, Stelle."
 
     show s doubt
 
@@ -127,7 +127,7 @@ label start:
 
     s "It's because you don't shut up. They also said that they hired me because I'm such a hard worker and they admire my skills."
 
-    v "You sound like a liar."
+    v upset "You sound like a liar."
 
     show s happy
 
@@ -152,9 +152,9 @@ label start:
 
 label stay_with_natsuki:
 
-    v "No thanks, I'm going to stay with Natsuki."
+    v smile "No thanks, I'm going to stay with Natsuki."
     
-    v "I don't feel like going outside right now."
+    v smile "I don't feel like going outside right now."
 
     show s doubt 
     
@@ -172,7 +172,7 @@ label stay_with_natsuki:
     
     n "I mean, you owe me, so obviously it would make sense that you should stay."
     
-    v "I need a job like Stelle, then I wouldn't need to rely on you so much."
+    v embarrassed2 "I need a job like Stelle, then I wouldn't need to rely on you so much."
     
     show n surprise
 
@@ -184,21 +184,21 @@ label stay_with_natsuki:
     
     "Nah."
     
-    v "You should go back to studying since you're soo worried about that project."
+    v smile "You should go back to studying since you're soo worried about that project."
 
     show n angry with hpunch
     
     n "I am! This is incredibly serious for my grades!"
     
-    v "Hush Natsuki!"
+    v upset "Hush Natsuki!"
 
-    hide n angry
+    hide n angry 
 
     jump go_home
 
 label leave_with_stelle:
 
-    v "Sorry Natsuki, I don't feel like studying. I'm going to leave with Stelle."
+    v sad "Sorry Natsuki, I don't feel like studying. I'm going to leave with Stelle."
 
     show n shy at left 
     
@@ -221,7 +221,7 @@ label leave_with_stelle:
 
     s "Not gonna lie, you looked super bored with Natsuki. Why do you hang with her so much anyways?"
     
-    v "I mean, I knew her for a long time. I feel like I should branch out with more people, but I don't want to leave her behind."
+    v surprised "I mean, I knew her for a long time. I feel like I should branch out with more people, but I don't want to leave her behind."
     
     show s default
 
@@ -233,7 +233,7 @@ label leave_with_stelle:
     
     s "Hurry, let's run before the sun sets! I don't have a flashlight and my phone's about to die."
     
-    v "Are you serious??"
+    v upset "Are you serious??"
     
     "Stelle just laughs and runs faster. I don't want to be behind, so I rush to keep up."
 
@@ -252,7 +252,7 @@ label leave_with_stelle:
     
     "I regret this so much."
     
-    v "If I fail my class, I'm going to blame you library assistant."
+    v upset "If I fail my class, I'm going to blame you library assistant."
 
     show s doubt
     
@@ -260,7 +260,7 @@ label leave_with_stelle:
     
     s "Of course this isn't the reason I got you to chase me here. Just be patient."
     
-    v "Patience? Coming from you?"
+    v upset "Patience? Coming from you?"
    
     "She pretends to ignore me and heads to the bench. I just follow her."
 
@@ -272,7 +272,7 @@ label leave_with_stelle:
     show s happy 
     with dissolve
 
-    v "Ugh, I'm getting tired."
+    v sad "Ugh, I'm getting tired."
 
     show s doubt
     
@@ -280,7 +280,7 @@ label leave_with_stelle:
     
     "Wow, the sky is so clear here!"
     
-    v "This is awesome! How did you know about this?"
+    v surprised "This is awesome! How did you know about this?"
 
     show s happy
     
@@ -305,7 +305,7 @@ label leave_with_stelle:
 
 label complement_stelle:
 
-    v "You know, I've never noticed how pretty your eyes are."
+    v embarrassed2 "You know, I've never noticed how pretty your eyes are."
 
     show s embarrassed
     
@@ -319,7 +319,7 @@ label complement_stelle:
 
 label say_nothing:
     
-    v "Never mind. There's no need to ruin this nice moment with her."
+    v smile "Never mind. There's no need to ruin this nice moment with her."
 
     jump continue_looking_at_the_stars
 
@@ -333,13 +333,13 @@ label continue_looking_at_the_stars:
 
     s "Whoops, forgot I'm out of charge."
     
-    v "Do you want me to walk home with you? You can use my phone as a flashlight."
+    v surprised "Do you want me to walk home with you? You can use my phone as a flashlight."
 
     show s default
     
     s "Nah. I know how to get home safely."
     
-    v "Ok! Thanks for taking me out here, it was really fun."
+    v smile "Ok! Thanks for taking me out here, it was really fun."
 
     show s blush
     
@@ -360,15 +360,15 @@ label go_home:
     "It's the next day."
 
     if stayWithNatsuki == True:
-        v "Maybe I should hangout with Stelle today? But it was nice being with Natsuki yesterday..."
+        v sad "Maybe I should hangout with Stelle today? But it was nice being with Natsuki yesterday..."
     elif leaveWithStelle == True:
-        v "Maybe I should hangout with Natsuki today? But yesterday was pretty fun..."
+        v sad "Maybe I should hangout with Natsuki today? But yesterday was pretty fun..."
 
     "I step out of the house and see someone familiar in the distance."
 
     show n neutral at right with dissolve
 
-    v "Hey Natsuki! Don't be in such a rush again!"
+    v smile "Hey Natsuki! Don't be in such a rush again!"
 
     if stayWithNatsuki == True:
         show n angry
@@ -413,19 +413,19 @@ label literature_club:
     
     n "Hey Vivian! Why are you so late? Stop doing that or it's going to become a habit."
     
-    v "I needed to talk with my teacher. Anyways, what are we doing today?"
+    v surprised "I needed to talk with my teacher. Anyways, what are we doing today?"
     
     show n laugh
 
     n "The club president was just saying that she thinks that we should be working on our writing skills more. We need to diversify by writing poems."
     
-    v "What? That sounds boring!"
+    v upset "What? That sounds boring!"
 
     show n angry with hpunch
     
     n "No it isn't! Poems are a unique way to present your ideas to the world."
     
-    v "I don't have any ideas. I wanted to read manga with you again."
+    v sad "I don't have any ideas. I wanted to read manga with you again."
 
     show n smile
     
@@ -455,7 +455,7 @@ label love_poem:
 
     "Natsuki comes back with the supplies and I get to work."
 
-    v "Ok, I'm done."
+    v smile "Ok, I'm done."
 
     "I present my poem to Natsuki, talking about her sweet personality and hardworking energy."
     
@@ -463,11 +463,11 @@ label love_poem:
     
     n "H-hey! Why'd you write a poem about me!"
     
-    v "It was the easiest to write. I mean, I know so much about you."
+    v embarrassed2 "It was the easiest to write. I mean, I know so much about you."
     
     n "You didn't have to write all those nice things though..."
     
-    v "Well, it made for a better poem right?"
+    v embarrassed2 "Well, it made for a better poem right?"
     
     n "I-it's not like I like it or anything!"
 
@@ -487,7 +487,7 @@ label ice_cream_poem:
 
     "Natsuki comes back with the supplies and I get to work."
     
-    v "Ok, I'm done."
+    v smile "Ok, I'm done."
 
     "I present my poem to Natsuki, talking about the different flavors of ice cream and whether cones or bowls are better."
     
@@ -495,7 +495,7 @@ label ice_cream_poem:
     
     n "What the heck? What kinda poem was that?"
     
-    v "Were you even paying attention? That's a poem about my love for ice cream."
+    v upset "Were you even paying attention? That's a poem about my love for ice cream."
     
     n "There's no way this helped your writing skills at all."
 
@@ -503,7 +503,7 @@ label ice_cream_poem:
     
     n "Now I'm craving ice cream too..."
     
-    v "See? That's how moving my poem was."
+    v smile "See? That's how moving my poem was."
     
     show n angry
 
@@ -521,12 +521,12 @@ label walk_home_with_natsuki:
 
     n "Oh, club's over! Time to clean up!"
 
-    v "Why are you so energetic over this?"
+    v sad "Why are you so energetic over this?"
 
     "Maybe writing poems isn't so bad."
 
     if iceCreamPoem == True:
-        v "I'm so glad it's over. I'm hungry for ice cream."
+        v smile "I'm so glad it's over. I'm hungry for ice cream."
 
         show n angry
         
@@ -536,7 +536,7 @@ label walk_home_with_natsuki:
         
         n "Whatever, let's just eat."
         
-        v "Yay!!"
+        v smile "Yay!!"
 
     jump home_2
 
@@ -544,7 +544,7 @@ label soccer_game:
 
     show s default
     
-    v "She looks super surprised."
+    v surprised "She looks super surprised."
 
     show s blush
 
@@ -553,7 +553,7 @@ label soccer_game:
     if stayWithNatsuki == True:
         s "Vivian, what are you doing here?"
 
-        v "I mean it's Friday, the soccer team always has their games today."
+        v smile "I mean it's Friday, the soccer team always has their games today."
 
         show s embarrassed
 
@@ -561,7 +561,7 @@ label soccer_game:
     elif leaveWithStelle == True:
         s "Vivian, you actually showed up?" 
 
-        v "You literally asked me to yesterday, why wouldn't I."
+        v upset "You literally asked me to yesterday, why wouldn't I."
 
         show s embarrassed
 
@@ -573,28 +573,28 @@ label soccer_game:
 
     "Later.."
 
-    v "WOW! You're a lot better at soccer than I thought!"
+    v surprised "WOW! You're a lot better at soccer than I thought!"
     
     show s doubt
 
     s "I win and that's the first thing you say?"
     
-    v "Yep. I thought you were going to be the benchwarmer."
+    v smile "Yep. I thought you were going to be the benchwarmer."
     
     s "Vivian, I'm exhausted. If you're not going to say anything nice, then please, shut up."
     
     if stayWithNatsuki == True:
-        v "Ok, I'll respect the winning team"
+        v smile "Ok, I'll respect the winning team"
     elif leaveWithStelle == True:
-        v "Be patient, remember?" 
+        v smile "Be patient, remember?" 
 
-    v "You were pretty good out there."
+    v embarrassed2 "You were pretty good out there."
 
     show s happy
     
     s "Thanks. I like winning."
     
-    v "Want me to buy you something? You look pretty tired right now."
+    v smile "Want me to buy you something? You look pretty tired right now."
 
     show s blush
     
@@ -604,13 +604,13 @@ label soccer_game:
 
     s "I would kill for some fried chicken, sushi, and a liter of soda right now."
     
-    v "HEY! You're the one with the job here, try to be more mindful of what you're ordering?"
+    v upset "HEY! You're the one with the job here, try to be more mindful of what you're ordering?"
     
     show s doubt
     
     s "Fine, I'll just go for the chicken today."
     
-    v "Ok, but you're getting the cheapest one on the menu."
+    v upset "Ok, but you're getting the cheapest one on the menu."
     
     "I can tell Stelle's trying not to complain."
     
@@ -651,13 +651,13 @@ label home_2:
         
         n "You should've ran the second you saw me."
         
-        v "I don't think I want to waste all my energy before lunch."
+        v upset "I don't think I want to waste all my energy before lunch."
         
         n "I'm not buying you anymore food."
         
-        v "You mean 'our' food, but I'll respect it."
+        v smile "You mean 'our' food, but I'll respect it."
         
-        v "Just don't complain when I show up late again."
+        v smile "Just don't complain when I show up late again."
         
         n "You're so annoying!"
         
@@ -708,17 +708,17 @@ label work_with_natsuki:
     
     n "Can you just grab that book for me? I don't want to be caught using that creaky stool."
     
-    v "You're so fussy!"
+    v upset "You're so fussy!"
     
     "I grab it anyways and look at the cover."
     
-    v "Is this what our project is going to be? A presentation about nature?"
+    v surprised "Is this what our project is going to be? A presentation about nature?"
 
     show n laugh
     
     n "Yep! Nature has a lot of interesting topics we can approach so we can add a lot of research about-"
     
-    v "I'm not writing all that!"
+    v upset "I'm not writing all that!"
 
     show n angry
     
@@ -728,7 +728,7 @@ label work_with_natsuki:
     
     n "Did you come here so we could work on the project together?"
     
-    v "Yeah, you're the best candidate."
+    v embarrassed2 "Yeah, you're the best candidate."
 
     if leaveWithStelle == True & soccerGame == True:
 
@@ -743,7 +743,7 @@ label work_with_natsuki:
         
         n "Let's make an awesome project!"
 
-    v "Ok! But you're going to be the one that has to write all the in-depth research. It sounds boring."
+    v smile "Ok! But you're going to be the one that has to write all the in-depth research. It sounds boring."
     
     show n angry
 
@@ -764,7 +764,7 @@ label work_with_natsuki:
     
     "I have no idea what they're talking about."
     
-    v "Thanks Ms. Zoru! We'll let the next group present now."
+    v smile "Thanks Ms. Zoru! We'll let the next group present now."
     
     "I shoot a look to Natsuki."
 
@@ -808,7 +808,7 @@ label work_with_natsuki:
 
 label complement_natsuki:
 
-    v "You're so good at writing! I really liked how energetic you were when we were presenting."
+    v embarrassed2 "You're so good at writing! I really liked how energetic you were when we were presenting."
     
     show n smile
     
@@ -818,15 +818,15 @@ label complement_natsuki:
     
     n "You did great too! The way you formatted the information made it easier to follow."
     
-    v "It wasn't that hard. You just put everything in giant blocks of text. I couldn't see anything you put."
+    v embarrassed1 "It wasn't that hard. You just put everything in giant blocks of text. I couldn't see anything you put."
     
     show n angry
     
     n "Hey! It had a lot of important information and was needed so that-"
     
-    v "Ack! Whatever then!"
+    v upset "Ack! Whatever then!"
     
-    v "Anyways, after all this, we should celebrate!"
+    v smile "Anyways, after all this, we should celebrate!"
 
     show n neutral
     
@@ -840,9 +840,9 @@ label complement_natsuki:
     
     n "Only if you want too! No pressure, I can bake them by myself."
     
-    v "(laughs)"
+    v embarrassed2 "(laughs)"
     
-    v "I like baking, c'mon, I'll actually run this time!"
+    v embarrassed2 "I like baking, c'mon, I'll actually run this time!"
 
     show n angry
     
@@ -854,7 +854,7 @@ label complement_natsuki:
 
 label be_normal:
 
-    v "We did a great job presenting! Ms. Zoru has to give us an A on this."
+    v smile "We did a great job presenting! Ms. Zoru has to give us an A on this."
 
     show n smile
 
@@ -864,9 +864,9 @@ label be_normal:
     
     n "She asked us so many questions!"
     
-    v "She asked us one."
+    v upset "She asked us one."
     
-    v "And you were the one that tried to keep talking for the rest of the class!"
+    v upset "And you were the one that tried to keep talking for the rest of the class!"
     
     show n angry
     
@@ -884,7 +884,7 @@ label work_with_stelle:
 
     show s happy with dissolve
     
-    v "Hello?"
+    v surprised "Hello?"
     
     show s worried
 
@@ -898,36 +898,36 @@ label work_with_stelle:
     
     s "If my screen cracks because of you, you owe me bad." 
     
-    v "Aren't you supposed to be attentive on the job?"
+    v upset "Aren't you supposed to be attentive on the job?"
     
     s "I am paying attention. My high score was on the line!"
     
     "I might be dead for this project. Oh well."
     
-    v "I don't care about that!"
+    v upset "I don't care about that!"
     
-    v "I came here to ask you about something."
+    v smile "I came here to ask you about something."
 
     "She looks at me suspiciously and raises her eyebrows."
     
     s "I think you know how to use the library computers." #with vpunch?
     
-    v "What? No I'm-"
+    v upset "What? No I'm-"
     
     s "The dewey decimal system chart is right here. Find your genre and leave me alone."
     
-    v "Can you quit it! I'm here to ask if you can be my partner for the project."
+    v upset "Can you quit it! I'm here to ask if you can be my partner for the project."
 
     if stayWithNatsuki == True & literatureClub == True:
         s "..."
         
         s "Why?"
         
-        v "Why..not?"
+        v surprised "Why..not?"
         
         s "Wouldn't you wanna to partner up with Natsuki more?"
         
-        v "I want to partner up with {i}you{/i}. You seem more fun!"
+        v smile "I want to partner up with {i}you{/i}. You seem more fun!"
 
         show s default
         
@@ -959,9 +959,9 @@ label work_with_stelle:
 
 label lock_in:
 
-    v "Wouldn't you like it if we finished the project now rather than do it all later?"
+    v surprised "Wouldn't you like it if we finished the project now rather than do it all later?"
     
-    v "You aren't even doing anything right now! Lets just start today."
+    v smile "You aren't even doing anything right now! Lets just start today."
 
     show s doubt
     
@@ -971,9 +971,9 @@ label lock_in:
     
     "Stelle jumps over the help desk and hops to my side."
     
-    v "???"
+    v surprised "???"
     
-    v "Couldn't you use the swinging door instead?"
+    v upset "Couldn't you use the swinging door instead?"
 
     show s teasing
     
@@ -1013,7 +1013,7 @@ label lock_in:
     
     "After class..."
     
-    v "That was pretty good! I'm surprised you didn't mess it up."
+    v smile "That was pretty good! I'm surprised you didn't mess it up."
 
     show s doubt
     
@@ -1023,7 +1023,7 @@ label lock_in:
     
     s "But I agree. I kinda need her to raise my grade."
     
-    v "She totally will. She complemented us and everything!"
+    v surprised "She totally will. She complemented us and everything!"
 
     show s blush
     
@@ -1037,7 +1037,7 @@ label lock_in:
     
     s "Wanna come with me? I got soccer practice now."
 
-    v "Sure!"
+    v smile "Sure!"
 
     hide s happy
 
@@ -1045,9 +1045,9 @@ label lock_in:
 
 label listen_to_stelle:
 
-    v "You're right, we have a lot of time."
+    v surprised "You're right, we have a lot of time."
     
-    v "What are you playing?"
+    v smile "What are you playing?"
 
     show s blush
     
@@ -1076,19 +1076,19 @@ label listen_to_stelle:
     "My grade is so screwed."
 
     
-    v "Stelle! What the hell is this?"
+    v upset"Stelle! What the hell is this?"
 
     show s default with dissolve
     
     s "It's my slides."
     
-    v "Did you literally just copy and paste everything? You don't write this professionally."
+    v upset "Did you literally just copy and paste everything? You don't write this professionally."
     
     show s worried
     
     s "Hey, this is a last minute project! There's no way I could fill up all those slides in time."
     
-    v "Seriously? Ms. Zoru can tell this is fake. Everyone can tell this is fake."
+    v upset "Seriously? Ms. Zoru can tell this is fake. Everyone can tell this is fake."
     
     show s doubt
 
@@ -1124,13 +1124,13 @@ label throw_stelle_under_the_bus:
 
     "Ms. Zoru, I have something to tell you."
 
-    v "Stelle's slides were just copy and pasted from our sources. Mine are written by me."
+    v upset "Stelle's slides were just copy and pasted from our sources. Mine are written by me."
     
     show s worried
     
     s "Hey!"
     
-    v "It's true though. You were too lazy to do them, weren't you?"
+    v sad "It's true though. You were too lazy to do them, weren't you?"
     
     s "B-but it's not like I should take all the blame!"
     
@@ -1156,7 +1156,7 @@ label throw_stelle_under_the_bus:
     
     s "I don't understand why you needed to rat me out like that."
     
-    v "I didn't expect you to do that! I actually worked on my part."
+    v upset "I didn't expect you to do that! I actually worked on my part."
 
     show s doubt
     
@@ -1175,7 +1175,7 @@ label throw_stelle_under_the_bus:
 
 label take_the_blame:
 
-    v "I'm sorry Ms. Zoru. I was the one that suggested it since we waited last minute."
+    v sad "I'm sorry Ms. Zoru. I was the one that suggested it since we waited last minute."
     
     z "I'm pretty disappointed in the both of you."
     
@@ -1203,7 +1203,7 @@ label take_the_blame:
     
     s "You didn't need to put yourself down too."
     
-    v "It was kinda my fault too. We both procrastinated a lot on this, but you shouldn't have used copied in such an obvious way."
+    v smile "It was kinda my fault too. We both procrastinated a lot on this, but you shouldn't have used copied in such an obvious way."
     
     show s embarrassed
     
@@ -1213,7 +1213,7 @@ label take_the_blame:
 
     s "We should probably get started on the redo, right?"
     
-    v "Definitely! Let's go to library before it closes."
+    v surprised "Definitely! Let's go to library before it closes."
     
     show s blush
 
