@@ -1,7 +1,8 @@
-define v = Character("Vivian", color="#60a860", image = "vivian")
-define n = Character("Natsuki", color="#db9833")
-define s = Character("Stelle", color="#bb619d")
-define z = Character("Ms. Zoru", color="#d15858")
+define v = Character("Vivian", color="#ffffff", image = "vivian", window_style="window")
+define narrator = Character(None, window_style="window4")
+define n = Character("Natsuki", color="#ffffff", window_style="window1")
+define s = Character("Stelle", color="#ffffff", window_style="window3")
+define z = Character("Ms. Zoru", color="#ffffff")
 
 default natsuki_points = 0
 default stelle_points = 0
@@ -679,7 +680,7 @@ label home_2:
     
     "Stelle is handling the help desk."
     
-    " 'Handling'. I can see her phone screen brightening up her face. "
+    "\"Handling\". I can see her phone screen brightening up her face. "
 
     menu:
         "Who do you work with?"
@@ -880,7 +881,7 @@ label work_with_stelle:
 
     scene bg library 3 with dissolve
 
-    "I go up to Stelle. I don't think she notices I'm in her face."
+    "I go up to Stelle. I don't think she notices me."
 
     show s happy with dissolve
     
@@ -1220,6 +1221,7 @@ label take_the_blame:
     s "Okay!"
 
     hide s blush
+    hide v surprised
 
     jump home_3
 
