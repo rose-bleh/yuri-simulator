@@ -19,7 +19,7 @@ define config.name = _("yuri simulator")
 ## this to False to hide the title.
 
 define gui.show_name = True
-
+ 
 
 ## The version of the game.
 
