@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 ## Initialization
 ################################################################################
 
@@ -113,7 +113,7 @@ screen say(who, what):
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+        add SideImage() align(0.0, 1.0) offset (0, 340)
 
 
 ## Make the namebox available for styling through the Character object.
@@ -128,14 +128,38 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
-
+#changes with each character
 style window:
     xalign 0.5
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/phone/dialoguebox_light_green.png", xalign=0.5, yalign=1.0)
+
+style window1:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign
+    ysize gui.textbox_height
+
+    background Image("gui/phone/dialoguebox_light_orange.png", xalign=0.5, yalign=1.0)
+
+style window3:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign
+    ysize gui.textbox_height
+
+    background Image("gui/phone/dialoguebox_light_pink.png", xalign=0.5, yalign=1.0)
+
+style window4:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign
+    ysize gui.textbox_height
+
+    background Image("gui/phone/textbox_light_green.png", xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -151,6 +175,7 @@ style say_label:
     properties gui.text_properties("name", accent=True)
     xalign gui.name_xalign
     yalign 0.5
+    
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
